@@ -50,7 +50,9 @@ defmodule Vectora.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:arangox_ecto, "~> 1.3"}
+      {:arangox_ecto, "~> 1.3"},
+      {:mnemonic_slugs, "~> 0.0.3"},
+      {:random_color, "~> 0.1.0"},
     ]
   end
 

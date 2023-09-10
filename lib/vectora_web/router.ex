@@ -16,8 +16,8 @@ defmodule VectoraWeb.Router do
 
   scope "/", VectoraWeb do
     pipe_through :browser
-
-    get "/", PageController, :home
+    live "/", Cursors
+    # get "/", PageController, :home
   end
 
   # Other scopes may use custom stacks.

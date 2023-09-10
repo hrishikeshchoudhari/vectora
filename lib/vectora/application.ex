@@ -17,7 +17,9 @@ defmodule Vectora.Application do
       # Start Finch
       {Finch, name: Vectora.Finch},
       # Start the Endpoint (http/https)
-      VectoraWeb.Endpoint
+      VectoraWeb.Endpoint,
+
+      VectoraWeb.Presence
       # Start a worker by calling: Vectora.Worker.start_link(arg)
       # {Vectora.Worker, arg}
     ]
