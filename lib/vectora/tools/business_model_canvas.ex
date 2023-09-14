@@ -8,12 +8,13 @@ defmodule Vectora.Tools.BusinessModelCanvas do
 
     outgoing :racis, Vectora.Tools.RACI
     outgoing :partners, Vectora.Tools.Partner
+    outgoing :products, Vectora.Tools.Product
     outgoing :value_propositions, Vectora.Tools.ValueProposition
-
 
     timestamps()
   end
 
+  @doc false
   def changeset(business_model_canvas, attrs) do
     business_model_canvas
     |> cast(attrs, [:name, :description])

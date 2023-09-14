@@ -1,0 +1,42 @@
+<.header>
+  Listing Gain creators
+  <:actions>
+    <.link patch={~p"/gain_creators/new"}>
+      <.button>New Gain creator</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="gain_creators"
+  rows={@streams.gain_creators}
+  row_click={fn {_id, gain_creator} -> JS.navigate(~p"/gain_creators/#{gain_creator}") end}
+>
+  <:col :let={{_id, gain_creator}} label="Name"><%= gain_creator.name %></:col>
+  <:col :let={{_id, gain_creator}} label="Description"><%= gain_creator.description %></:col>
+  <:action :let={{_id, gain_creator}}>
+    <div class="sr-only">
+      <.link navigate={~p"/gain_creators/#{gain_creator}"}>Show</.link>
+    </div>
+    <.link patch={~p"/gain_creators/#{gain_creator}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, gain_creator}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: gain_creator.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="gain_creator-modal" show on_cancel={JS.patch(~p"/gain_creators")}>
+  <.live_component
+    module={VectoraWeb.GainCreatorLive.FormComponent}
+    id={@gain_creator.id || :new}
+    title={@page_title}
+    action={@live_action}
+    gain_creator={@gain_creator}
+    patch={~p"/gain_creators"}
+  />
+</.modal>

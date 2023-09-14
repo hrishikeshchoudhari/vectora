@@ -1,0 +1,27 @@
+<.header>
+  Business model canvas <%= @business_model_canvas.id %>
+  <:subtitle>This is a business_model_canvas record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/business_model_canvas/#{@business_model_canvas}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit business_model_canvas</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name"><%= @business_model_canvas.name %></:item>
+  <:item title="Description"><%= @business_model_canvas.description %></:item>
+</.list>
+
+<.back navigate={~p"/business_model_canvas"}>Back to business_model_canvas</.back>
+
+<.modal :if={@live_action == :edit} id="business_model_canvas-modal" show on_cancel={JS.patch(~p"/business_model_canvas/#{@business_model_canvas}")}>
+  <.live_component
+    module={VectoraWeb.BusinessModelCanvasLive.FormComponent}
+    id={@business_model_canvas.id}
+    title={@page_title}
+    action={@live_action}
+    business_model_canvas={@business_model_canvas}
+    patch={~p"/business_model_canvas/#{@business_model_canvas}"}
+  />
+</.modal>

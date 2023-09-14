@@ -1,0 +1,44 @@
+<.header>
+  Listing Racis
+  <:actions>
+    <.link patch={~p"/racis/new"}>
+      <.button>New Raci</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="racis"
+  rows={@streams.racis}
+  row_click={fn {_id, raci} -> JS.navigate(~p"/racis/#{raci}") end}
+>
+  <:col :let={{_id, raci}} label="Responsible"><%= raci.responsible %></:col>
+  <:col :let={{_id, raci}} label="Accountable"><%= raci.accountable %></:col>
+  <:col :let={{_id, raci}} label="Consulted"><%= raci.consulted %></:col>
+  <:col :let={{_id, raci}} label="Informed"><%= raci.informed %></:col>
+  <:action :let={{_id, raci}}>
+    <div class="sr-only">
+      <.link navigate={~p"/racis/#{raci}"}>Show</.link>
+    </div>
+    <.link patch={~p"/racis/#{raci}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, raci}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: raci.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="raci-modal" show on_cancel={JS.patch(~p"/racis")}>
+  <.live_component
+    module={VectoraWeb.RACILive.FormComponent}
+    id={@raci.id || :new}
+    title={@page_title}
+    action={@live_action}
+    raci={@raci}
+    patch={~p"/racis"}
+  />
+</.modal>

@@ -7,10 +7,13 @@ defmodule Vectora.Tools.Product do
     field :description, :string
 
     outgoing :racis, Vectora.Tools.RACI
+    outgoing :partners, Vectora.Tools.Partner
+    outgoing :value_propositions, Vectora.Tools.ValueProposition
 
     timestamps()
   end
 
+  @doc false
   def changeset(product, attrs) do
     product
     |> cast(attrs, [:name, :description])

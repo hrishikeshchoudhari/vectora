@@ -11,6 +11,7 @@ defmodule Vectora.Tools.GainCreator do
     timestamps()
   end
 
+  @doc false
   def changeset(gain_creator, attrs) do
     gain_creator
     |> cast(attrs, [:name, :description])

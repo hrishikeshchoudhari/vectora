@@ -1,0 +1,42 @@
+<.header>
+  Listing Pain killers
+  <:actions>
+    <.link patch={~p"/pain_killers/new"}>
+      <.button>New Pain killer</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="pain_killers"
+  rows={@streams.pain_killers}
+  row_click={fn {_id, pain_killer} -> JS.navigate(~p"/pain_killers/#{pain_killer}") end}
+>
+  <:col :let={{_id, pain_killer}} label="Name"><%= pain_killer.name %></:col>
+  <:col :let={{_id, pain_killer}} label="Description"><%= pain_killer.description %></:col>
+  <:action :let={{_id, pain_killer}}>
+    <div class="sr-only">
+      <.link navigate={~p"/pain_killers/#{pain_killer}"}>Show</.link>
+    </div>
+    <.link patch={~p"/pain_killers/#{pain_killer}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, pain_killer}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: pain_killer.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="pain_killer-modal" show on_cancel={JS.patch(~p"/pain_killers")}>
+  <.live_component
+    module={VectoraWeb.PainKillerLive.FormComponent}
+    id={@pain_killer.id || :new}
+    title={@page_title}
+    action={@live_action}
+    pain_killer={@pain_killer}
+    patch={~p"/pain_killers"}
+  />
+</.modal>

@@ -1,0 +1,27 @@
+<.header>
+  Gain creator <%= @gain_creator.id %>
+  <:subtitle>This is a gain_creator record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/gain_creators/#{@gain_creator}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit gain_creator</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name"><%= @gain_creator.name %></:item>
+  <:item title="Description"><%= @gain_creator.description %></:item>
+</.list>
+
+<.back navigate={~p"/gain_creators"}>Back to gain_creators</.back>
+
+<.modal :if={@live_action == :edit} id="gain_creator-modal" show on_cancel={JS.patch(~p"/gain_creators/#{@gain_creator}")}>
+  <.live_component
+    module={VectoraWeb.GainCreatorLive.FormComponent}
+    id={@gain_creator.id}
+    title={@page_title}
+    action={@live_action}
+    gain_creator={@gain_creator}
+    patch={~p"/gain_creators/#{@gain_creator}"}
+  />
+</.modal>

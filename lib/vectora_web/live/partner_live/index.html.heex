@@ -1,0 +1,42 @@
+<.header>
+  Listing Partners
+  <:actions>
+    <.link patch={~p"/partners/new"}>
+      <.button>New Partner</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="partners"
+  rows={@streams.partners}
+  row_click={fn {_id, partner} -> JS.navigate(~p"/partners/#{partner}") end}
+>
+  <:col :let={{_id, partner}} label="Name"><%= partner.name %></:col>
+  <:col :let={{_id, partner}} label="Description"><%= partner.description %></:col>
+  <:action :let={{_id, partner}}>
+    <div class="sr-only">
+      <.link navigate={~p"/partners/#{partner}"}>Show</.link>
+    </div>
+    <.link patch={~p"/partners/#{partner}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, partner}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: partner.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="partner-modal" show on_cancel={JS.patch(~p"/partners")}>
+  <.live_component
+    module={VectoraWeb.PartnerLive.FormComponent}
+    id={@partner.id || :new}
+    title={@page_title}
+    action={@live_action}
+    partner={@partner}
+    patch={~p"/partners"}
+  />
+</.modal>

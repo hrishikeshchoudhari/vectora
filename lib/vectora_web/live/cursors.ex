@@ -60,31 +60,4 @@ defmodule VectoraWeb.Cursors do
 
     {:noreply, updated}
   end
-
-  # @impl true
-  # def mount(_params, _session, socket) do
-  #   {:ok, assign(socket, :cursors, %{})}
-  # end
-
-  # @impl true
-  # def handle_info(
-  #       %{
-  #         event: "cursor_move",
-  #         payload: %{"x" => x, "y" => y, "id" => id}
-  #       } = msg,
-  #       socket
-  #     ) do
-  #   {:noreply, assign(socket, :cursors, Map.put(socket.assigns.cursors, id, %{x: x, y: y}))}
-  # end
-
-  # @impl true
-  # def handle_info(
-  #       %{
-  #         event: "cursor_leave",
-  #         payload: %{"id" => id}
-  #       } = msg,
-  #       socket
-  #     ) do
-  #   {:noreply, assign(socket, :cursors, Map.delete(socket.assigns.cursors, id))}
-  # end
 end

@@ -6,8 +6,8 @@ defmodule Vectora.Tools.ValueProposition do
     field :name, :string
     field :description, :string
 
-    outgoing :pain_killers, Vectora.Tools.PainKiller
     outgoing :gain_creators, Vectora.Tools.GainCreator
+    outgoing :pain_relievers, Vectora.Tools.PainReliever
 
     incoming :business_model_canvas, Vectora.Tools.BusinessModelCanvas
     incoming :products, Vectora.Tools.Product
@@ -15,8 +15,9 @@ defmodule Vectora.Tools.ValueProposition do
     timestamps()
   end
 
-  def changeset(value_props, attrs) do
-    value_props
+  @doc false
+  def changeset(value_proposition, attrs) do
+    value_proposition
     |> cast(attrs, [:name, :description])
     |> validate_required([:name, :description])
   end

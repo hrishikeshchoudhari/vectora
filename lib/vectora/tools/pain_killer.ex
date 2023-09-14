@@ -11,6 +11,7 @@ defmodule Vectora.Tools.PainKiller do
     timestamps()
   end
 
+  @doc false
   def changeset(pain_killer, attrs) do
     pain_killer
     |> cast(attrs, [:name, :description])

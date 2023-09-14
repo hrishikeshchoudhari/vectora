@@ -12,9 +12,11 @@ defmodule Vectora.Tools.RACI do
     incoming :partners, Vectora.Tools.Partner
     incoming :products, Vectora.Tools.Product
 
+
     timestamps()
   end
 
+  @doc false
   def changeset(raci, attrs) do
     raci
     |> cast(attrs, [:responsible, :accountable, :consulted, :informed])

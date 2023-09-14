@@ -1,0 +1,42 @@
+<.header>
+  Listing Business model canvas
+  <:actions>
+    <.link patch={~p"/business_model_canvas/new"}>
+      <.button>New Business model canvas</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="business_model_canvas"
+  rows={@streams.business_model_canvas_collection}
+  row_click={fn {_id, business_model_canvas} -> JS.navigate(~p"/business_model_canvas/#{business_model_canvas}") end}
+>
+  <:col :let={{_id, business_model_canvas}} label="Name"><%= business_model_canvas.name %></:col>
+  <:col :let={{_id, business_model_canvas}} label="Description"><%= business_model_canvas.description %></:col>
+  <:action :let={{_id, business_model_canvas}}>
+    <div class="sr-only">
+      <.link navigate={~p"/business_model_canvas/#{business_model_canvas}"}>Show</.link>
+    </div>
+    <.link patch={~p"/business_model_canvas/#{business_model_canvas}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, business_model_canvas}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: business_model_canvas.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="business_model_canvas-modal" show on_cancel={JS.patch(~p"/business_model_canvas")}>
+  <.live_component
+    module={VectoraWeb.BusinessModelCanvasLive.FormComponent}
+    id={@business_model_canvas.id || :new}
+    title={@page_title}
+    action={@live_action}
+    business_model_canvas={@business_model_canvas}
+    patch={~p"/business_model_canvas"}
+  />
+</.modal>

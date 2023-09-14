@@ -1,0 +1,27 @@
+<.header>
+  Pain killer <%= @pain_killer.id %>
+  <:subtitle>This is a pain_killer record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/pain_killers/#{@pain_killer}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit pain_killer</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name"><%= @pain_killer.name %></:item>
+  <:item title="Description"><%= @pain_killer.description %></:item>
+</.list>
+
+<.back navigate={~p"/pain_killers"}>Back to pain_killers</.back>
+
+<.modal :if={@live_action == :edit} id="pain_killer-modal" show on_cancel={JS.patch(~p"/pain_killers/#{@pain_killer}")}>
+  <.live_component
+    module={VectoraWeb.PainKillerLive.FormComponent}
+    id={@pain_killer.id}
+    title={@page_title}
+    action={@live_action}
+    pain_killer={@pain_killer}
+    patch={~p"/pain_killers/#{@pain_killer}"}
+  />
+</.modal>
