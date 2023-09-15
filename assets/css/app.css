@@ -11,4 +11,31 @@
 
 .body {
     cursor: none
-  }
+}
+
+.box-container {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  height: 40px;
+}
+
+.box {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 10px;
+  background-color: #000000;
+  border: 1px solid #000000;
+  //background-image: linear-gradient(to right top, #b7c7e0, #b6cae8, #b6cdef, #b5cff7, #b4d2ff);
+  opacity: 0.3;
+  text-align: center;
+  line-height: 10px; /* vertical centering for box content */
+  border-radius: 5px;
+  color: white;
+  //text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 1);
+}
+
+.box:hover {
+  opacity: 1;
+  border: 1px solid #FD4F00;
+}

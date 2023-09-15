@@ -210,6 +210,7 @@ defmodule Vectora.Tools do
 
   """
   def list_value_propositions do
+    IO.inspect(Repo.aggregate(ValueProposition, :count, :id))
     Repo.all(ValueProposition)
   end
 
