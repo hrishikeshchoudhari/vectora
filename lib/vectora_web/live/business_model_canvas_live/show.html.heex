@@ -13,6 +13,10 @@
   <:item title="Description"><%= @business_model_canvas.description %></:item>
 </.list>
 
+<%= for rel <- @relations do %>
+  <.button> See related <%= String.capitalize(rel) %></.button>
+<% end %>
+
 <.back navigate={~p"/business_model_canvas"}>Back to business_model_canvas</.back>
 
 <.modal :if={@live_action == :edit} id="business_model_canvas-modal" show on_cancel={JS.patch(~p"/business_model_canvas/#{@business_model_canvas}")}>

@@ -10,9 +10,13 @@ defmodule VectoraWeb.BusinessModelCanvasLive.Show do
 
   @impl true
   def handle_params(%{"id" => id}, _, socket) do
+
+    all_associations = Enum.map(Tools.BusinessModelCanvas.__schema__(:associations), &Atom.to_string/1)
+
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
+     |> assign(:relations, all_associations)
      |> assign(:business_model_canvas, Tools.get_business_model_canvas!(id))}
   end
 

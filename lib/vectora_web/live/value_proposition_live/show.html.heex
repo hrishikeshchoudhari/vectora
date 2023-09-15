@@ -13,6 +13,10 @@
   <:item title="Description"><%= @value_proposition.description %></:item>
 </.list>
 
+<%= for rel <- @relations do %>
+  <.button> See related <%= String.capitalize(rel) %></.button>
+<% end %>
+
 <.back navigate={~p"/value_propositions"}>Back to value_propositions</.back>
 
 <.modal :if={@live_action == :edit} id="value_proposition-modal" show on_cancel={JS.patch(~p"/value_propositions/#{@value_proposition}")}>

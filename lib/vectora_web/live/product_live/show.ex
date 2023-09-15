@@ -10,9 +10,13 @@ defmodule VectoraWeb.ProductLive.Show do
 
   @impl true
   def handle_params(%{"id" => id}, _, socket) do
+
+    all_associations = Enum.map(Tools.Product.__schema__(:associations), &Atom.to_string/1)
+
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
+     |> assign(:relations, all_associations)
      |> assign(:product, Tools.get_product!(id))}
   end
 

@@ -7,7 +7,7 @@ defmodule Vectora.Tools.ValueProposition do
     field :description, :string
 
     outgoing :gain_creators, Vectora.Tools.GainCreator
-    outgoing :pain_relievers, Vectora.Tools.PainReliever
+    outgoing :pain_killers, Vectora.Tools.PainKiller
 
     incoming :business_model_canvas, Vectora.Tools.BusinessModelCanvas
     incoming :products, Vectora.Tools.Product

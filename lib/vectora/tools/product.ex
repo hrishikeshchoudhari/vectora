@@ -10,6 +10,7 @@ defmodule Vectora.Tools.Product do
     outgoing :partners, Vectora.Tools.Partner
     outgoing :value_propositions, Vectora.Tools.ValueProposition
 
+    incoming :business_model_canvas, Vectora.Tools.BusinessModelCanvas
     timestamps()
   end
 

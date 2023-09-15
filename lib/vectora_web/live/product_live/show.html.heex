@@ -13,6 +13,10 @@
   <:item title="Description"><%= @product.description %></:item>
 </.list>
 
+<%= for rel <- @relations do %>
+  <.button> See related <%= String.capitalize(rel) %></.button>
+<% end %>
+
 <.back navigate={~p"/products"}>Back to products</.back>
 
 <.modal :if={@live_action == :edit} id="product-modal" show on_cancel={JS.patch(~p"/products/#{@product}")}>

@@ -15,6 +15,10 @@
   <:item title="Informed"><%= @raci.informed %></:item>
 </.list>
 
+<%= for rel <- @relations do %>
+  <.button> See related <%= String.capitalize(rel) %></.button>
+<% end %>
+
 <.back navigate={~p"/racis"}>Back to racis</.back>
 
 <.modal :if={@live_action == :edit} id="raci-modal" show on_cancel={JS.patch(~p"/racis/#{@raci}")}>
