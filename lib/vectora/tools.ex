@@ -7,6 +7,26 @@ defmodule Vectora.Tools do
   alias Vectora.Repo
 
   alias Vectora.Tools.GainCreator
+  alias Vectora.Tools.BusinessModelCanvas
+  alias Vectora.Tools.ValueProposition
+  alias Vectora.Tools.PainKiller
+  alias Vectora.Tools.Product
+  alias Vectora.Tools.Partner
+  alias Vectora.Tools.RACI
+
+
+  def get_gain_creator_connections(_gain_creator, id) do
+  {:ok, res} = ArangoXEcto.aql_query(Repo,
+                "WITH gain_creators FOR v, e IN 1..1 ANY 'gain_creators/"<> id <>"' gaincreator_valueproposition RETURN v")
+    Enum.map(res, fn map -> Repo.load(ValueProposition, map) end)
+  end
+
+  def linking() do
+    g1 = Vectora.Tools.get_gain_creator!("1643012")
+    v1 = Vectora.Tools.get_value_proposition!("1675760")
+    e1 = ArangoXEcto.create_edge(Repo, g1, v1)
+    IO.inspect(e1)
+  end
 
   @doc """
   Returns the list of gain_creators.

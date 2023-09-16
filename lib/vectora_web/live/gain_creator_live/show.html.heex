@@ -13,9 +13,32 @@
   <:item title="Description"><%= @gain_creator.description %></:item>
 </.list>
 
-<%= for rel <- @relations do %>
-  <.button> See related <%= String.capitalize(rel) %></.button>
+<br/>
+<br/>
+<br/>
+<.header>
+  Connected to
+    <%= for rel <- @relations do %>
+      <%= String.capitalize(rel) <> ", " %>
+    <% end %>
+</.header>
+
+<br/>
+<br/>
+<.button id={ @gain_creator.id } phx-click="get_rel" phx-value-id={@gain_creator.id}>
+  See all connected nodes
+</.button>
+
+<%= if Enum.empty?(@connections) do %>
+  <p>No connections found.</p>
+<% else %>
+  <ul>
+    <%= for connection <- @connections do %>
+      <p><%= connection.name %> : <%= connection.description %></p>
+    <% end %>
+  </ul>
 <% end %>
+
 
 <.back navigate={~p"/gain_creators"}>Back to gain_creators</.back>
 

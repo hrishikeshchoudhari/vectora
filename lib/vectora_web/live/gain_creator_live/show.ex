@@ -5,7 +5,9 @@ defmodule VectoraWeb.GainCreatorLive.Show do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, socket}
+    # {:ok, socket}
+    {:ok, assign(socket, connections: [])}
+
   end
 
   @impl true
@@ -18,6 +20,17 @@ defmodule VectoraWeb.GainCreatorLive.Show do
      |> assign(:page_title, page_title(socket.assigns.live_action))
      |> assign(:relations, all_associations)
      |> assign(:gain_creator, Tools.get_gain_creator!(id))}
+  end
+
+  @impl true
+  def handle_event("get_rel", %{"id" => id}, socket) do
+    IO.puts("get_rel")
+    connections = Tools.get_gain_creator_connections(socket.assigns.gain_creator, id)
+    IO.inspect(connections)
+    {:noreply,
+      socket
+      |> assign(:connections, connections)
+    }
   end
 
   defp page_title(:show), do: "Show Gain creator"
