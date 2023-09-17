@@ -51,9 +51,6 @@ defmodule Vectora.Tools do
   end
 
   def linking(node1, node2) do
-    IO.puts("linking")
-    IO.inspect(node1)
-    IO.inspect(node2)
     e1 = ArangoXEcto.create_edge(Repo, node1, node2)
     IO.inspect(e1)
   end

@@ -142,28 +142,29 @@ defmodule VectoraWeb.CoreComponents do
   def toprow(assigns) do
     ~H"""
     <div class="box-container">
-      <.link navigate={"/value_propositions/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Value Propositions</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
-      <.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"><div class="box">Gain Creators</div></.link>
+    <.link navigate={"/value_propositions/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700">
+  <div class="box">Value Propositions</div>
+</.link>
+<.link navigate={"/gain_creators/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700">
+  <div class="box">Gain Creators</div>
+</.link>
+
+<.link navigate={"/business_model_canvas/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700">
+  <div class="box">Business Model Canvas</div>
+</.link>
+<.link navigate={"/racis/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700">
+  <div class="box">RACIs</div>
+</.link>
+<.link navigate={"/pain_killers/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700">
+  <div class="box">Pain Killers</div>
+</.link>
+<.link navigate={"/products/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700">
+  <div class="box">Products</div>
+</.link>
+<.link navigate={"/partners/"} class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700">
+  <div class="box">Partners</div>
+</.link>
+
     </div>
     """
   end
