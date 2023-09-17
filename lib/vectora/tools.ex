@@ -30,6 +30,16 @@ defmodule Vectora.Tools do
     Enum.map(res, fn map -> Repo.load(ValueProposition, map) end)
   end
 
+  def get_value_proposition_connections(_value_proposition, id) do
+    # Executes an ArangoDB AQL query. The query fetches all nodes directly connected
+    # to the value proposition with the provided ID via the 'product_valueproposition' edge.
+    {:ok, prod_res} = ArangoXEcto.aql_query(Repo,
+                "WITH value_propositions FOR v, e IN 1..1 ANY 'value_propositions/"<> id <>"' product_valueproposition RETURN v")
+
+                # Maps over the result to load each map into the corresponding ValueProposition Ecto schema.
+    Enum.map(prod_res, fn map -> Repo.load(Product, map) end)
+  end
+
   def linking() do
     g1 = Vectora.Tools.get_gain_creator!("1643012")
     v1 = Vectora.Tools.get_value_proposition!("1675760")

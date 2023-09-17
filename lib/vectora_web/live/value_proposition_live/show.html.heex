@@ -13,9 +13,34 @@
   <:item title="Description"><%= @value_proposition.description %></:item>
 </.list>
 
-<%= for rel <- @relations do %>
-  <.button> See related <%= String.capitalize(rel) %></.button>
+
+<br/>
+<br/>
+<br/>
+<.header>
+  Connected to
+    <%= for rel <- @relations do %>
+      <%= String.capitalize(rel) <> ", " %>
+    <% end %>
+</.header>
+
+<br/>
+<br/>
+<.button id={ @value_proposition.id } phx-click="get_rel" phx-value-id={@value_proposition.id}>
+  See all connected nodes
+</.button>
+
+<%= if Enum.empty?(@connections) do %>
+  <p>No connections found.</p>
+<% else %>
+  <ul>
+    <%= for connection <- @connections do %>
+      <p><%= connection.name %> : <%= connection.description %></p>
+    <% end %>
+  </ul>
 <% end %>
+
+
 
 <.back navigate={~p"/value_propositions"}>Back to value_propositions</.back>
 
