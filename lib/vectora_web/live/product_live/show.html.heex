@@ -13,9 +13,42 @@
   <:item title="Description"><%= @product.description %></:item>
 </.list>
 
-<%= for rel <- @relations do %>
-  <.button> See related <%= String.capitalize(rel) %></.button>
+<br/>
+<br/>
+<br/>
+<.header>
+  Connected to
+    <%= for rel <- @relations do %>
+      <%= " -- " <> String.capitalize(rel) %>
+    <% end %>
+</.header>
+
+<br/>
+<br/>
+<.button id={ @product.id } phx-click="get_rel" phx-value-id={@product.id}>
+  See all connected nodes
+</.button>
+
+<%= if Enum.empty?(@connections) do %>
+  <p>No connections found.</p>
+<% else %>
+  <ul>
+    <%= for connection <- @connections do %>
+      <p><%= connection.name %> : <%= connection.description %></p>
+    <% end %>
+  </ul>
 <% end %>
+
+
+<br/>
+<br/>
+<.header>
+  New Value Proposition for this product
+  <input type="text" id="valprop_name" name="valprop_name" placeholder="Name" phx-hook="InputValueBind" data-target="valprop_name" />
+  <input type="text" id="valprop_description" name="valprop_description" placeholder="Description" phx-hook="InputValueBind" data-target="valprop_description" />
+</.header>
+<.button id={ @product.id } phx-click="create_valprop" phx-value-name="" phx-value-description=""> Connect new Value Proposition</.button>
+
 
 <.back navigate={~p"/products"}>Back to products</.back>
 

@@ -24,6 +24,20 @@ import topbar from "../vendor/topbar"
 
 let Hooks = {};
 
+Hooks.InputValueBind = {
+  mounted() {
+    this.el.addEventListener("input", e => {
+      let targetName = this.el.dataset.target;
+      let button = document.querySelector('button[phx-click="create_valprop"]');
+      if (targetName === "valprop_name") {
+        button.setAttribute("phx-value-name", e.target.value);
+      } else if (targetName === "valprop_description") {
+        button.setAttribute("phx-value-description", e.target.value);
+      }
+    });
+  }
+}
+
 Hooks.TrackClientCursor = {
   mounted() {
     document.addEventListener('mousemove', (e) => {

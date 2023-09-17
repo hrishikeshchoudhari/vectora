@@ -5,7 +5,8 @@ defmodule VectoraWeb.ProductLive.Show do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, socket}
+    {:ok, assign(socket, connections: [])}
+
   end
 
   @impl true
@@ -18,6 +19,23 @@ defmodule VectoraWeb.ProductLive.Show do
      |> assign(:page_title, page_title(socket.assigns.live_action))
      |> assign(:relations, all_associations)
      |> assign(:product, Tools.get_product!(id))}
+  end
+
+  @impl true
+  def handle_event("get_rel", %{"id" => id}, socket) do
+    IO.puts("get_rel" <> id)
+    connections = Tools.get_product_connections(socket.assigns.product, id)
+    IO.inspect(connections)
+    {:noreply,
+      socket
+      |> assign(:connections, connections)
+    }
+  end
+
+  def handle_event("create_valprop", props, socket) do
+    {:ok, new_valprop} = Tools.create_value_proposition(props)
+    Tools.linking(new_valprop, socket.assigns.product)
+    {:noreply, socket}
   end
 
   defp page_title(:show), do: "Show Product"
